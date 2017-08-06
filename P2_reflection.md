@@ -131,8 +131,38 @@ Trial #3 - Use Grayscale and normalized images using image=np.array(X_train / 25
 Trial #4 - Increse Epoch to 100
  Epoch 100, Batch_size 128, rate=0.001, mu=0, sigma = 0.1    VA= 93.5%
  
- Updating to 100 epochs. I get a 93.5% VA after about 93 epochs
+Updating to 100 epochs. I get a 93.5% VA after about 93 epochs, let;s keep it at 100.
 
+Trial #5 - Double the Batch_size = 256
+ Epoch 100, Batch_size 256, rate=0.001, mu=0, sigma = 0.1    VA= 93.2%
+ 
+ Didn't accomplish much, try to lower down to 100
+
+Trial #5 - Decrease Batch_size = 100
+ Epoch 100, Batch_size 100, rate=0.001, mu=0, sigma = 0.1    VA= 94.0%
+ 
+ Slight increase, let's keep Batch=100
+ 
+Trial #5 - Decrease Learning Rate by 1/2
+ Epoch 100, Batch_size 100, rate=0.0005, mu=0, sigma = 0.1    VA= 91.1%
+
+Trial #6 - Reverting back to rate=0.001, let's implement dropout 
+  Added droput between Layer 3 and 4, with keep_prob = 0.8 on training, (leave keep_prob=1.0 on validataion)
+  Epoch 100, Batch_size 100, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 94.0%
+  
+  After about 60 epochs, VA leveling off around 94.0%
+  
+Trial #6 - Added 2nd droput between Layer 4 and 5
+  Epoch 100, Batch_size 100, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 94.0%
+
+Around EPOCH 65, VA hovers at 65.0%
+
+Trial #7 - Reduce EPOCHS to 65
+  Epoch 65,, Batch_size 100, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 94.0%
+
+
+
+ 
 
 
 
@@ -217,3 +247,8 @@ For the second image ...
 ####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
 
+References:
+
+[The Black Magic of Deep Learning - Tips and Tricks for the practitioner](https://nmarkou.blogspot.co.at/2017/02/the-black-magic-of-deep-learning-tips.html)
+
+[CS231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/neural-networks-3/)
