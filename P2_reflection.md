@@ -84,6 +84,9 @@ I decided to generate additional data because ...
 
 To add more data to the the data set, I used the following techniques because ... 
 
+
+
+
 Here is an example of an original image and an augmented image:
 
 ![alt text][image3]
@@ -107,6 +110,22 @@ My final model consisted of the following layers:
 |						|												|
 |						|												|
  
+
+
+
+
+
+You will have to experiment with the network architecture - add/reduce number of layers, filters etc - and experiment with different hyperparameters (learning rate, epochs, batch size, dropout rate etc), so that your model is able to fit the normalized training data.
+
+
+
+
+
+####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+
+To train the model, I used an ....
+
+
 
 Trial #1 - LeNet architecture similar to LeNet-Lab Solution, except using color images instead of grayscale
  Epoch 10, Batch_size 128, rate=0.001, mu=0, sigma = 0.1    VA= 87.0%
@@ -138,42 +157,44 @@ Trial #5 - Double the Batch_size = 256
  
  Didn't accomplish much, try to lower down to 100
 
-Trial #5 - Decrease Batch_size = 100
+Trial #6 - Decrease Batch_size = 100
  Epoch 100, Batch_size 100, rate=0.001, mu=0, sigma = 0.1    VA= 94.0%
  
  Slight increase, let's keep Batch=100
  
-Trial #5 - Decrease Learning Rate by 1/2
+Trial #7 - Decrease Learning Rate by 1/2
  Epoch 100, Batch_size 100, rate=0.0005, mu=0, sigma = 0.1    VA= 91.1%
 
-Trial #6 - Reverting back to rate=0.001, let's implement dropout 
+Trial #8 - Reverting back to rate=0.001, let's implement dropout 
   Added droput between Layer 3 and 4, with keep_prob = 0.8 on training, (leave keep_prob=1.0 on validataion)
   Epoch 100, Batch_size 100, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 94.0%
   
-  After about 60 epochs, VA leveling off around 94.0%
+  After about 60 epochs, VA leveled off around 94.0%
   
-Trial #6 - Added 2nd droput between Layer 4 and 5
+Trial #9 - Added 2nd droput between Layer 4 and 5
   Epoch 100, Batch_size 100, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 94.0%
 
-Around EPOCH 65, VA hovers at 95.0%
+Trial #10 - Reduce EPOCHS to 65, increase batch_size to 128
+  Epoch 65, Batch_size 128, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 95.1%
 
-Trial #7 - Reduce EPOCHS to 65
-  Epoch 65, Batch_size 256, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 95.0%
+Trial #11 - Decrease the keep_drop to 0.5
+  Epoch 65, Batch_size 128, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.5    VA= 95.9%
 
---just realized batch size was 256, let's lower than back to 128.
+Trial #12 - Try reducing the rate by 1/4
+  Epoch 65, Batch_size 128, rate=0.0075, mu=0, sigma = 0.1, keep_drop = 0.5    VA= 93.6%
 
-Trial #7 - Reduce EPOCHS to 65
-  Epoch 65, Batch_size 128, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 96.2%
-  
-Trial #8 - Reduce Batch_size down to 100
-  Epoch 65, Batch_size 100, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 95.9%
-  
-Trial #9 - Revert batch_size=128 
-  Epoch 65, Batch_size 128, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 95.9%
+Trial #13 - Try increasing the rate by 1/4
+  Epoch 65, Batch_size 128, rate=0.00125, mu=0, sigma = 0.1, keep_drop = 0.5   VA= 96.7%
 
-Trial #10 - lowering Dropout to 0.5
-  Epoch 65, Batch_size 128, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.5    VA= %
+Trial #14 - Decreased the Batch size down to 100
+  Epoch 65, Batch_size 100, rate=0.00125, mu=0, sigma = 0.1, keep_drop = 0.5   VA= 96.2%
 
+Trial #15 - Increase the batch size to 150
+  Epoch 65, Batch_size 150, rate=0.00125, mu=0, sigma = 0.1, keep_drop = 0.5   VA= 96.3%
+
+
+Finalizing on ths model architecture, as this 3% more than the 93% required.
+ Epoch 65, Batch_size 128, rate=0.00125, mu=0, sigma = 0.1, keep_drop = 0.5   VA= 96.%
  
 
 
@@ -181,16 +202,6 @@ Trial #10 - lowering Dropout to 0.5
 
 
 
-
-You will have to experiment with the network architecture - add/reduce number of layers, filters etc - and experiment with different hyperparameters (learning rate, epochs, batch size, dropout rate etc), so that your model is able to fit the normalized training data.
-
-
-
-
-
-####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
-
-To train the model, I used an ....
 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
