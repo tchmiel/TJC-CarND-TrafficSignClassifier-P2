@@ -63,11 +63,22 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 
 As a first step, I decided to convert the images to grayscale because ...
 
+
+Sermanet and LeCun's paper, Traffic Sign Recognition with Multi-Scale Convolutional Networks, improved their accuracy slightly from 98.9%8 to 99.17%
+
+
+
 Here is an example of a traffic sign image before and after grayscaling.
 
 ![alt text][image2]
 
 As a last step, I normalized the image data because ...
+
+
+
+
+
+
 
 I decided to generate additional data because ... 
 
@@ -96,6 +107,43 @@ My final model consisted of the following layers:
 |						|												|
 |						|												|
  
+
+Trial #1 - LeNet architecture similar to LeNet-Lab Solution, except using color images instead of grayscale
+ Epoch 10, Batch_size 128, rate=0.001, mu=0, sigma = 0.1    VA= 87.0%
+
+Trial #2 - Use Grayscale and normalized images using image=(image-128)/128
+ Epoch 10, Batch_size 128, rate=0.001, mu=0, sigma = 0.1    VA= 78.4%
+
+Interesting, the validation accuracy went down - not what I was expecting
+From, https://discussions.udacity.com/t/normalization-and-accuracy-decrease/295403/20, 
+This "X_train=(X_train-128)/128" normalization will generate values between -1 and 1. It means a mean of 0 and a variance of 2.
+The "X_train = np.array(X_train / 255.0 - 0.5 )" normalization will generate values between -0.5 and 0.5. It means a mean of 0 and a variance of 1.
+
+np.mean(X_train) = 82.677
+np.mean(normalize) = 1.224
+np.mean(better_normalize) = -0.178
+
+Trial #3 - Use Grayscale and normalized images using image=np.array(X_train / 255.0 - 0.5 )
+ Epoch 10, Batch_size 128, rate=0.001, mu=0, sigma = 0.1    VA= 90.1%
+ 
+ Impressive - 
+
+Trial #4 - Increse Epoch to 100
+ Epoch 100, Batch_size 128, rate=0.001, mu=0, sigma = 0.1    VA= 93.5%
+ 
+ Updating to 100 epochs. I get a 93.5% VA after about 93 epochs
+
+
+
+
+
+
+
+
+You will have to experiment with the network architecture - add/reduce number of layers, filters etc - and experiment with different hyperparameters (learning rate, epochs, batch size, dropout rate etc), so that your model is able to fit the normalized training data.
+
+
+
 
 
 ####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
