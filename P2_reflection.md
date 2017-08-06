@@ -155,12 +155,24 @@ Trial #6 - Reverting back to rate=0.001, let's implement dropout
 Trial #6 - Added 2nd droput between Layer 4 and 5
   Epoch 100, Batch_size 100, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 94.0%
 
-Around EPOCH 65, VA hovers at 65.0%
+Around EPOCH 65, VA hovers at 95.0%
 
 Trial #7 - Reduce EPOCHS to 65
-  Epoch 65,, Batch_size 100, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 94.0%
+  Epoch 65, Batch_size 256, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 95.0%
 
+--just realized batch size was 256, let's lower than back to 128.
 
+Trial #7 - Reduce EPOCHS to 65
+  Epoch 65, Batch_size 128, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 96.2%
+  
+Trial #8 - Reduce Batch_size down to 100
+  Epoch 65, Batch_size 100, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 95.9%
+  
+Trial #9 - Revert batch_size=128 
+  Epoch 65, Batch_size 128, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.8    VA= 95.9%
+
+Trial #10 - lowering Dropout to 0.5
+  Epoch 65, Batch_size 128, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.5    VA= %
 
  
 
