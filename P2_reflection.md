@@ -192,7 +192,7 @@ Trial #11 - Decrease the keep_drop to 0.5
   Epoch 65, Batch_size 128, rate=0.001, mu=0, sigma = 0.1, keep_drop = 0.5    VA= 95.9%
 
 Trial #12 - Try reducing the rate by 1/4
-  Epoch 65, Batch_size 128, rate=0.0075, mu=0, sigma = 0.1, keep_drop = 0.5    VA= 93.6%
+  Epoch 65, Batch_size 128, rate=0.0075, mu=0, sigma = 0.1, keep_drop = 0.5    VA= 87.7%
 
 Trial #13 - Try increasing the rate by 1/4
   Epoch 65, Batch_size 128, rate=0.00125, mu=0, sigma = 0.1, keep_drop = 0.5   VA= 96.7%
@@ -201,17 +201,20 @@ Trial #14 - Decreased the Batch size down to 100
   Epoch 65, Batch_size 100, rate=0.00125, mu=0, sigma = 0.1, keep_drop = 0.5   VA= 96.2%
 
 Trial #15 - Increase the batch size to 150
-  Epoch 65, Batch_size 150, rate=0.00125, mu=0, sigma = 0.1, keep_drop = 0.5   VA= 96.3%
+  Epoch 65, Batch_size 150, rate=0.00125, mu=0, sigma = 0.1, keep_drop = 0.5   VA= 94.4%
 
+Trial #16 - dropping batch size to 128, changing Epoch to 40
+  Epoch 40, Batch_size 128, rate=0.00125, mu=0, sigma = 0.1, keep_drop = 0.5   VA= 96.2%
 
 Finalizing on ths model architecture, as this 3% more than the 93% required.
- Epoch 65, Batch_size 128, rate=0.00125, mu=0, sigma = 0.1, keep_drop = 0.5   VA= 96.%
+ Epoch 65, Batch_size 128, rate=0.00125, mu=0, sigma = 0.1, keep_drop = 0.5   VA= 96.1%
  
 
 My final model results were:
-* training set accuracy of      0.984
-* validation set accuracy of    0.945
-* test set accuracy of          0.943 
+* training set accuracy of      99.8%
+* validation set accuracy of    96.1%
+* test set accuracy of          94.3%
+
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
