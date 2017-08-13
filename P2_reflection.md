@@ -31,16 +31,16 @@ The goals / steps of this project are the following:
 [image5]: ./output/image_preprocessing.png "Processing of Images"
 [image6]: ./output/final_training_vs_accuracy_plots.png "Training vs. Validation"
 
-[image11]: ./new_traffic_signs/do_not_enter.png "Do Not Enter"
-[image12]: ./new_traffic_signs/end_of_speed_limit.png "End of Speed Limit"
-[image13]: ./new_traffic_signs/keep_right.png "Keep Right"
-[image14]: ./new_traffic_signs/right_turn.png "Right Turn"
-[image15]: ./new_traffic_signs/roundabout.png "Roundabout"
-[image16]: ./new_traffic_signs/speed_limit_20.png "Speed Limit 20"
-[image17]: ./new_traffic_signs/speed_limit_60.png "Speed Limit 60"
-[image18]: ./new_traffic_signs/stop_sign.png "Stop Sign"
-[image19]: ./new_traffic_signs/straight_or_left.png "Straight Or Left"
-[image110]: ./new_traffic_signs/traffic_sign.png "Traffic Sign"
+[image11]: ./new_traffic_signs/speed_limit_20.png "Speed Limit 20"
+[image12]: ./new_traffic_signs/straight_or_left.png "Straight Or Left"
+[image13]: ./new_traffic_signs/stop_sign.png "Stop Sign"
+[image14]: ./new_traffic_signs/roundabout.png "Roundabout"
+[image15]: ./new_traffic_signs/keep_right.png "Keep Right"
+[image16]: ./new_traffic_signs/end_of_speed_limit.png "End of Speed Limit"
+[image17]: ./new_traffic_signs/do_not_enter.png "Do Not Enter"
+[image18]: ./new_traffic_signs/traffic_sign.png "Traffic Sign"
+[image19]: ./new_traffic_signs/speed_limit_60.png "Speed Limit 60"
+[image110]: ./new_traffic_signs/right_turn.png "Right Turn"
 
 
 ## Rubric Points
@@ -285,36 +285,170 @@ The last sign may be difficult to classify as it is not taken at a perendicular 
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Image			        |     Prediction	        					| Probablity
+|:---------------------:|:---------------------------------------------:| :---------------------------------------------:
+| speed_limit_20.png      		| Keep right   | 56.2%   									| 
+| straight_or_left.png   |   Go straight or left  |100.0%										|
+| stop_sign.png				| Priority road | 85.6%											|
+| roundabout.png	      		| Priority road | 99.8%				 				|
+| keep_right.png			    | Keep right    | 100.0%      							|
+| end_of_speed_limit.png    		|  End of all speed and passing limits |99.9%  									| 
+| do_not_enter.png    		| No entry  | 100.0%										|
+| traffic_sign.png				| Road work  | 100.0%											|
+| speed_limit_60.png	      	| Speed limit (60km/h) | 100.0%					 				|
+| right_turn.png			    | Turn right ahead | 100.0%     							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 7 of the 10 traffic signs, which gives an accuracy of 
+70%. This compares favorably to the accuracy on the test set of 93.4%.
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+
+The code for making predictions on my final model is located in the 3rd from last cell of the Ipython notebook.
+Probabilities that appear very close to zero were omitted here for brevity.
+
+
+
+**new image: 1 - speed_limit_20.png **
+  
+*actual class* = 0 : Speed limit (20km/h)
+
+For the first image, the model thought this was either a 'Keep Right' or 'Speed Limit 60', 
+but either is correct.  The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .562         			| Keep right   									| 
+| .426     				| Speed limit (60km/h)										|
+| .011					| Bicycles crossing											|
 
 
-For the second image ... 
+  
+**new image: 2 - straight_or_left.png**
+  
+*class* = 37 : Go straight or left
+
+For the second image, the model corrected predicted this image was a "Go Straight or Left" sign.
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.00         			| Go straight or left   									| 
+
+
+**new image: 3 -stop_sign.png**
+
+For the third image, the model thought this 'Stop Sign' image was a "Priority Road" image.
+This 'Stop Sign' image does not fill the entire frame, and thus, it may be why it thought
+this resembled the "Priority Road" sign.
+
+The top three soft max probabilities were
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .856        			| Priority road   									| 
+| .143     				| No passing 										|
+| .001					| Yield										|
+
+
+**new image: 4 - roundabout.png**
+
+  class = 40 : Roundabout mandatory
+
+For the fourth image, the model thought this was a "Priority Road" image. 
+I do not understand how this image was confused with the Priority Road image and it was
+close to the 100%.
+
+The top two soft max probabilities were
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .998         			| Priority road   									| 
+| .001     				| Keep right 										|
+
+
+**new image: 5 - keep_right.png**
+
+  class = 38 : Keep right
+
+For the fifth image, the model corrected predicted this image was a "Keep right" sign.
+
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.00         			| Keep right   									| 
+
+
+**new image: 6 - end_of_speed_limit.png**
+
+  class = 32 : End of all speed and passing limits
+
+For the sixth image, the model corrected predicted this image was an "End of all speed and passing limits" sign.
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .999         			| End of all speed and passing limits   									| 
+| .001    				| End of no passin 										|
+
+
+**new image: 7 - do_not_enter.png**
+
+  class = 17 : No entry
+
+For the seventh image, the model corrected predicted this image was a "No entry" sign.
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.00         			| No entry   									| 
+
+
+**new image: 8 - traffic_sign.png**
+
+  class = 25 : Road work
+
+For the eigth image, the model corrected predicted this image was a "Road Work" sign.
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.00         			| Road work   									| 
+
+
+**new image: 9 - speed_limit_60.png**
+
+  class = 3 : Speed limit (60km/h)
+
+For the ninth image, the model corrected predicted this image was a "Speed Limit (60km/h)" sign.
+I left the other spftmax probabilities in here, as I would have expected first image to have
+a similar soft max probabilities as this image.
+
+The top five soft max probabilities were
+ 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.00         			| Speed limit (60km/h)   									| 
+| .00     				| Speed limit (60km/h) 										|
+| .00					| Speed limit (80km/h)										|
+| .00	      			| Wild animals crossing					 				|
+| .00				    | Speed limit (30km/h)      							|
+
+
+**new image: 10 - right_turn.png**
+
+  class = 33 : Turn right ahead
+
+For the fifth image, the model corrected predicted this image was a "Turn right ahead" sign.
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.00         			| Turn right ahead   									| 
+
+
+
+
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
+#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
 
 References:
